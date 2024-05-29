@@ -185,11 +185,11 @@ def main():
     m = main_draw_map(df_map, geo_data_json)
 
     placeholder = st.empty()
-    with placeholder.spinner('지도를 로딩중 입니다....🙂🙂🙂'):
+    with st.spinner('지도를 로딩중 입니다....🙂🙂🙂'):
         time.sleep(3)
 
     placeholder.empty()
-    folium_static(m)
+    placeholder = folium_static(m)
 
 
 
