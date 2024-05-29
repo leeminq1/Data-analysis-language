@@ -183,12 +183,12 @@ def main():
     df_map = st.session_state.df_map
     geo_data_json = st.session_state.geo_data_json
 
-    st.empty()
     with st.spinner('지도를 로딩중 입니다....🙂🙂🙂'):
         m = main_draw_map(df_map, geo_data_json)
         time.sleep(5)
 
     st.spinner('')
+    st.markdown('<br>', unsafe_allow_html=True)  # 빈 줄 삽입
     folium_static(m)
 
 
