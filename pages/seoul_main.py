@@ -96,10 +96,10 @@ def multi_select_btn():
 def main():
 
     # 페이지 제목 설정
-    st.title('📣연령별 임금 및 근로시간')
+    st.title('📣 서울시 자치구 데이터')
 
 
-    multi_select_btn()
+    # multi_select_btn()
 
 
 

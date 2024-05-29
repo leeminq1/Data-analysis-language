@@ -34,7 +34,7 @@ if 'geo_data_json' not in st.session_state:
 
 def main_draw_map(df_fil,geo_data):
     # 기본 지도 생성
-    m = folium.Map(location=[37.5665, 126.9780], zoom_start=12, width='100%', height='100%')
+    m = folium.Map(location=[37.5665, 126.9780], zoom_start=12, width='100%', heigh00%')
 
     # 색상 지정
     color_dict = {
