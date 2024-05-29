@@ -183,11 +183,13 @@ def main():
     df_map = st.session_state.df_map
     geo_data_json = st.session_state.geo_data_json
 
+    placeholder = st.empty()  # 빈 플레이스홀더 추가
+
     with st.spinner('지도를 로딩중 입니다....🙂🙂🙂'):
         m = main_draw_map(df_map, geo_data_json)
-        time.sleep(5)
+        time.sleep(5)  # 예시로 5초 대기
 
-    st.spinner('')
+    placeholder.empty()  # 플레이스홀더 지우기
     st.markdown('<br>', unsafe_allow_html=True)  # 빈 줄 삽입
     folium_static(m)
 
