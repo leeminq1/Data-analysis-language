@@ -180,15 +180,15 @@ def main():
     # 페이지 제목 설정
     st.title('📣서울시 상권 지도 시각화')
 
-
     df_map = st.session_state.df_map
     geo_data_json = st.session_state.geo_data_json
     m = main_draw_map(df_map, geo_data_json)
 
-    with st.spinner('Wait for it...'):
+    placeholder = st.empty()
+    with placeholder.spinner('지도를 로딩중 입니다....🙂🙂🙂'):
         time.sleep(3)
 
-
+    placeholder.empty()
     folium_static(m)
 
 
