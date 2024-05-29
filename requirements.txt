@@ -7,3 +7,4 @@ folium~=0.16.0
 geopandas~=0.14.4
 pathlib~=1.0.1
 st_pages
+streamlit_folium 
