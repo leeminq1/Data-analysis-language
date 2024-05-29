@@ -182,16 +182,13 @@ def main():
 
     df_map = st.session_state.df_map
     geo_data_json = st.session_state.geo_data_json
-    m = main_draw_map(df_map, geo_data_json)
-
-    placeholder = st.empty()
-    placeholder.empty()
-    placeholder = folium_static(m)
 
     with st.spinner('지도를 로딩중 입니다....🙂🙂🙂'):
+        m = main_draw_map(df_map, geo_data_json)
         time.sleep(3)
 
-
+    st.spinner('')
+    folium_static(m)
 
 
 
