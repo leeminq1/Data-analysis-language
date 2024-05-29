@@ -11,6 +11,7 @@ import seaborn as sns
 import os
 import json
 from streamlit_folium import folium_static
+import time
 
 
 
@@ -182,9 +183,11 @@ def main():
 
     df_map = st.session_state.df_map
     geo_data_json = st.session_state.geo_data_json
+    m = main_draw_map(df_map, geo_data_json)
 
-    with st.spinner('지도를 로딩 중입니다...'):
-        m = main_draw_map(df_map, geo_data_json)
+    with st.spinner('Wait for it...'):
+        time.sleep(3)
+
 
     folium_static(m)
 
