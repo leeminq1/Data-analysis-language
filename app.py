@@ -10,25 +10,29 @@ from st_pages import Page, show_pages, add_page_title,add_indentation,show_pages
 from pathlib import Path
 
 
-# # Function to inject HTML into Streamlit app
-# def inject_meta_tags():
-#     st.markdown("""
-#     <head>
-#         <!-- Open Graph Meta Tags -->
-#         <meta property="og:title" content="데이터 분석언어 기말과제 6조-상권분석" />
-#         <meta property="og:description" content="서울시 상권데이터를 활용한 분석" />
-#         <meta property="og:image" content="https://example.com/path/to/your/image.jpg" />
-#         <meta property="og:url" content="https://data-analysis-language-commercial-district.streamlit.app/" />
-#         <meta property="og:type" content="website" />
-#
-#     </head>
-#     """, unsafe_allow_html=True)
-#
-#
-# # Inject the meta tags into the app
-# inject_meta_tags()
+# Define the Open Graph tags
+og_title = "데이터분석언어 기말프로젝트 6조-상권분석"
+og_description = "서울시 공공데이터를 활용한 상권 분석"
+og_image = "URL_to_your_image.jpg"
 
-st.set_page_config(page_title='데이터분석언어 6조', page_icon=None, layout="centered", initial_sidebar_state="auto", menu_items=None)
+# Create HTML with Open Graph meta tags
+html_code = f"""
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta property="og:title" content="{og_title}" />
+    <meta property="og:description" content="{og_description}" />
+    <meta property="og:image" content="{og_image}" />
+</head>
+<body>
+</body>
+</html>
+"""
+
+# Use st.components.v1.html to render the HTML
+st.components.v1.html(html_code, height=0)
+
+# st.set_page_config(page_title='데이터분석언어 6조', page_icon=None, layout="centered", initial_sidebar_state="auto", menu_items=None)
 
 def pages():
     main_page = 'app.py'
