@@ -10,25 +10,25 @@ from st_pages import Page, show_pages, add_page_title,add_indentation,show_pages
 from pathlib import Path
 
 
-# Function to inject HTML into Streamlit app
-def inject_meta_tags():
-    st.markdown("""
-    <head>
-        <!-- Open Graph Meta Tags -->
-        <meta property="og:title" content="데이터 분석언어 기말과제 6조-상권분석" />
-        <meta property="og:description" content="서울시 상권데이터를 활용한 분석" />
-        <meta property="og:image" content="https://example.com/path/to/your/image.jpg" />
-        <meta property="og:url" content="https://data-analysis-language-commercial-district.streamlit.app/" />
-        <meta property="og:type" content="website" />
+# # Function to inject HTML into Streamlit app
+# def inject_meta_tags():
+#     st.markdown("""
+#     <head>
+#         <!-- Open Graph Meta Tags -->
+#         <meta property="og:title" content="데이터 분석언어 기말과제 6조-상권분석" />
+#         <meta property="og:description" content="서울시 상권데이터를 활용한 분석" />
+#         <meta property="og:image" content="https://example.com/path/to/your/image.jpg" />
+#         <meta property="og:url" content="https://data-analysis-language-commercial-district.streamlit.app/" />
+#         <meta property="og:type" content="website" />
+#
+#     </head>
+#     """, unsafe_allow_html=True)
+#
+#
+# # Inject the meta tags into the app
+# inject_meta_tags()
 
-    </head>
-    """, unsafe_allow_html=True)
-
-
-# Inject the meta tags into the app
-inject_meta_tags()
-
-
+st.set_page_config(page_title='데이터분석언어 6조', page_icon=None, layout="centered", initial_sidebar_state="auto", menu_items=None)
 
 def pages():
     main_page = 'app.py'
@@ -93,7 +93,8 @@ def toggle_text3():
 
 
 def main_text():
-    st.header("상권분석 개요")
+    st.header("데이터분석언어 기말과제 6조 - 상권분석")
+    # st.subheader('기말과제 6조-상권분석')
     st.markdown("**데이터 갱신일:** 2024-05-26")
     # st.subheader('상권분석 가설')
 
