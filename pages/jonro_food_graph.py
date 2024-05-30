@@ -168,7 +168,7 @@ def main_draw_map(df_fil,geo_data):
     ).add_to(m)
 
     # 지도 크기 조절
-    m.get_root().html.add_child(folium.Element('<style> #map { height: 1400px; width: 1400px; } </style>'))
+    m.get_root().html.add_child(folium.Element('<style> #map { height: 90%; width: 90%; } </style>'))
 
 
     return m
