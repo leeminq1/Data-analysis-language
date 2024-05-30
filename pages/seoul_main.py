@@ -59,19 +59,19 @@ def text_service_definition():
 def load_img(option1):
 
     if option1 == '서비스 업종비율 변화':
-        st.image('./data/service_year_percent.png', width=600)
+        st.image('./data/service_year_percent.png')
 
     elif option1 =='요식업 업종비율 변화':
-        st.image('./data/service_3_year_percent.png', width=600)
+        st.image('./data/service_3_year_percent.png')
 
     elif option1 =='서울시 자치구별 서비스업종비율':
-        st.image('./data/service_districe_all.png', width=900)
+        st.image('./data/service_districe_all.png')
 
     elif option1 =='서울 자치구별 상권구분비율':
-        st.image('./data/seoul_district.png', width=900)
+        st.image('./data/seoul_district.png')
 
     elif option1 =='서울시 점포현황':
-        st.image('./data/seoul_store.png', width=900)
+        st.image('./data/seoul_store.png')
 
 
 def main_select_bodx():
