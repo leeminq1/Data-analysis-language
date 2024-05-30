@@ -10,6 +10,26 @@ from st_pages import Page, show_pages, add_page_title,add_indentation,show_pages
 from pathlib import Path
 
 
+# Function to inject HTML into Streamlit app
+def inject_meta_tags():
+    st.markdown("""
+    <head>
+        <!-- Open Graph Meta Tags -->
+        <meta property="og:title" content="데이터 분석언어 기말과제 6조-상권분석" />
+        <meta property="og:description" content="서울시 상권데이터를 활용한 분석" />
+        <meta property="og:image" content="https://example.com/path/to/your/image.jpg" />
+        <meta property="og:url" content="https://data-analysis-language-commercial-district.streamlit.app/" />
+        <meta property="og:type" content="website" />
+
+    </head>
+    """, unsafe_allow_html=True)
+
+
+# Inject the meta tags into the app
+inject_meta_tags()
+
+
+
 def pages():
     main_page = 'app.py'
     seoul_main = "pages/seoul_main.py"
@@ -18,10 +38,10 @@ def pages():
 
     show_pages(pages=
         [
-            Page(main_page, "상권분석 개요", icon="🔶"),
-            Page(seoul_main, "서울시 자치구내 상권구분", icon="🔷"),
+            Page(main_page, "데이터분석언어 6조 - 상권분석", icon="🟥"),
+            Page(seoul_main, "서울시 자치구내 상권구분", icon="🟧"),
             Page(jongro_food_corr, "종로구 요식업 - 변수/상관관계", icon="🟨"),
-            Page(jonro_food_graph, "종로구 요식업 - 그래프 시각화", icon="🟥"),
+            Page(jonro_food_graph, "종로구 요식업 - 그래프 시각화", icon="🟩"),
         ]
     )
 
@@ -51,21 +71,72 @@ def fontRegistered():
     fm._load_fontmanager(try_read_cache=False)
 
 
+# 버튼 상태를 유지하기 위해 session state 사용
+if 'expanded1' not in st.session_state:
+    st.session_state.expanded1 = False
+
+if 'expanded2' not in st.session_state:
+    st.session_state.expanded2 = False
+
+if 'expanded3' not in st.session_state:
+    st.session_state.expanded3 = False
+
+def toggle_text1():
+    st.session_state.expanded1 = not st.session_state.expanded1
+
+def toggle_text2():
+    st.session_state.expanded2 = not st.session_state.expanded2
+
+def toggle_text3():
+    st.session_state.expanded3 = not st.session_state.expanded3
+
+
 
 def main_text():
-    st.header("데이터분석언어 6조 - 상권분석")
+    st.header("상권분석 개요")
     st.markdown("**데이터 갱신일:** 2024-05-26")
-    st.subheader('상권분석 가설')
+    # st.subheader('상권분석 가설')
 
     st.markdown("""
     **상권분석을 위한 데이터 분석**
-
-    - 가설 1 : 유동인구와 매출 간의 상관관계
-    - 가설 2 : 직장인 수, 거주자 수와 매출과의 상관관계
-    - 가설 3 : 주변 업소 수(개/폐점, 주변 업체 수)와 매출 간의 상관관계
-    - 가설 4 : 코로나19와 매출 간의 상관관계
+    - 서울 자치구의 서비스 업종 비율 및 상권코드별 구분
+    - 종로구 요식업에 영향을 주는 변수 분석
+    - 당월 매출을 기준으로 상권의 매출 예상 
     """)
 
+    # 버튼을 클릭하면 텍스트를 토글
+    st.button("1️⃣ 사용 데이터", on_click=toggle_text2)
+    if st.session_state.expanded2:
+        st.write("2019년 ~ 2023년 분기별 서울시 상권 데이터 ")
+        st.image('./data/data_drawio.png')
+
+    # 버튼을 클릭하면 텍스트를 토글
+    st.button("2️⃣ 분석 목적", on_click=toggle_text1)
+
+    if st.session_state.expanded1:
+        st.write("""
+        <div style="font-weight: bold; font-size: 14px;">
+        2019년 ~ 2023년 상권 데이터를 통하여 각 지표 ( 매출, 점포수, 유동인구, 상주인구 등)간 상관관계를 확인하고,<br/>
+        상권의 매출에 영향을 주는 지표를 선정한다. 더 나아가 해당 지표를 통해 앞으로 유명한 상권후보지를 선정하고, <br/>
+        해당 지역에서 유명한 업종을 추천하고, 매출을 예측한다.
+        </div>
+        """, unsafe_allow_html=True)
+
+
+    # 버튼을 클릭하면 텍스트를 토글
+    st.button("3️⃣ 분석방법 및 순서", on_click=toggle_text3)
+
+    if st.session_state.expanded3:
+        st.markdown("""
+        **상권분석을 위한 데이터 분석 순서**
+        <div style="font-weight: bold;">
+
+        1)	상권의 지리적 범위를 대규모 단위 (서울시) -> 소규모 단위(특정 자치구, 길, 동)로 축소시켜 분석하고자 하는 특정 자치구의 상권 분류 기준(골목상권, 발달상권, 전통시장, 관광특구)에 따라 데이터 분석을 수행한다.
+        2)	특정 자치구의 데이터 분석을 통해 상권에 형성에 영향을 주는 인자를 정량적 / 정성적으로 평가하여 주된 요인을 선정한다
+        3)	주요 인자로 선정된 지표를 통해 선정된 자치구내에 유망한 상권이 될 가능성이 있는 상권 배후지를 선정한다.
+        4)	선정된 상권 배후지에서 유망한 업종을 추천하고, 주요인자를 통해 매출을 예측한다.
+        </div>
+        """,unsafe_allow_html=True)
 
 # def data_index_btn():
 #     data_list = ['연령별 임금 및 근로시간', '연령별 임금 및 근로시간2']

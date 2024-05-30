@@ -168,7 +168,7 @@ def main_draw_map(df_fil,geo_data):
     ).add_to(m)
 
     # 지도 크기 조절
-    m.get_root().html.add_child(folium.Element('<style> #map { height: 1200px; width: 1200px; } </style>'))
+    m.get_root().html.add_child(folium.Element('<style> #map { height: 1400px; width: 1400px; } </style>'))
 
 
     return m
@@ -178,7 +178,7 @@ def main_draw_map(df_fil,geo_data):
 def main():
 
     # 페이지 제목 설정
-    st.title('📣서울시 상권 지도 시각화')
+    st.title('🌎서울시 상권 지도 시각화')
 
 
 
@@ -190,14 +190,32 @@ def main():
     with st.spinner('지도를 로딩중입니다....😅😅😅'):
         if m is not None:
             folium_static(m)
+            st.markdown("""
+                <div style="font-weight: bold; line-height: 2; font-size :7px">
+                    <p style="margin-bottom: 5px;"><strong>지도 구분</strong></p>
+                    <ul>
+                        <li>마커 : 파란색(골목상권), 초록색(발달상권), 빨간색(전통시장), 보라색(관광특구)</li>
+                        <li>순위 : <br/> 노란색 트로피(전체), 하얀색 밥(한식), 파란색 맥주잔(호프), 초록색 피자(양식),  
+                                빨간색 그릇(중식)</li>
+                    </ul>
+                </div>
+            """, unsafe_allow_html=True)
+
+            st.markdown("""
+                <div style="font-weight: bold; line-height: 2;">
+                    <p style="margin-bottom: 5px;"><strong>매출 순위</strong></p>
+                    <ul>
+                        <li> 1)전체 TOP 5 종각역, 대학로(혜화역), 종로구청, 서대문역, 북촌(안국역)</li>
+                        <li> 2)한식 TOP 5 : 성곡미술관, 종로5가역, 동묘앞역(동묘), 광장시장(광장전통시장), 종로4가</li>
+                        <li> 3)양식 TOP 5 : 종각역, 세종마을음식거리(금천교시장),서촌(경복궁역), 이화사거리, 통인시장</li>
+                        <li> 4)중식 TOP 5 : 북촌(안국역), 종로·청계 관광특구, 종로3가역, 동대문역</li>
+                        <li> 5)호프/간이주점 TOP 5 : 광화문역, 삼청동, 동대문역 1번, 세검정초등학교, 이북5도청사</li>
+                    </ul>
+                </div>
+            """, unsafe_allow_html=True)
 
 
 
-
-
-
-
-    placeholder.empty()
 
 
 
