@@ -45,8 +45,10 @@ def pages():
             Page(main_page, "데이터분석언어 기말과제 6조 - 상권분석", icon="🟥"),
             Page(seoul_main, "서울시 자치구내 상권구분", icon="🟧"),
             Page(jongro_food_corr, "종로구 요식업 - 변수/상관관계", icon="🟨"),
-            Page(jonro_food_graph, "종로구 요식업 - 그래프 시각화", icon="🟩"),
-        ]
+            Page(jonro_food_graph, "종로구 요식업 - 지도 시각화", icon="🟩"),
+        ],
+
+            
     )
 
     add_page_title()  # Optional method to add title and icon to current page
@@ -189,7 +191,7 @@ def main():
 
     main_text()
     # data_index_btn()
-
+    st.image('./data/qr_code.png')
 
 
 
